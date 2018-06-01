@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>z1</title>
+</head>
+<script src="jquery.js"></script>
+<style>
+    .preview img{
+        width: 200px;
+        height: auto;
+    }
+</style>
+<script>
+    function find_big(name) {
+        if (name != "no") {
+            let soname = "./z1/big/" + name;
+            $(".full").html(`<img src="${soname}" alt="${name}" width="800" height="auto" onerror="find_big('no')">`);
+            console.log(soname);
+        }else{
+            $(".full").html("<h3>Мы потеряли картинку :((</h3> ");
+        }
+    }
+</script>
+<body>
+    <h1>
+        Доработать функцию замены картинки в галерее таким образом, чтобы она проверяла наличие картинки по указанному в src адресу.
+    </h1>
+    <div class="full"></div>
+    <div class="preview">
+       <img class="img" id="big1.jpg" src="./z1/small/small1.jpeg" alt="1">
+       <img class="img" id="big2.jpg" src="./z1/small/small2.jpg" alt="2">
+       <img class="img" id="big3.jpg" src="./z1/small/small3.jpg" alt="3">
+   </div>
+
+    <script>
+        $(document).ready(function(){
+            $(".img").click(function() {
+                find_big($(this).attr('id'));
+            });
+        });
+    </script>
+</body>
+</html>

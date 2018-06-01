@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>z2</title>
+</head>
+<script src="jquery.js"></script>
+<style>
+   .product{
+       border: 1px dotted black;
+       width: 400px;
+       font-size: 1em;
+       float: left;
+       height: auto;
+   }
+    .products{
+        float: left;
+        width: 70%;
+        border: 3px dotted blue;
+        height: 100%;
+    }
+    .baskets{
+        width: 29%;
+        border-left: 3px solid green;
+        float: right;
+    }
+    #total{
+        border-bottom: 5px solid red;
+    }
+</style>
+<script>
+    var totalPrice=0;
+</script>
+<body>
+    <h1>
+        2) Реализовать модуль корзины. Создать блок товаров и блок корзины. У каждого товара есть кнопка «Купить»,
+        при нажатии на которую происходит добавление имени и цены товара в блок корзины.
+        Корзина должна уметь считать общую сумму заказа.
+    </h1>
+    <div id="basket" class="baskets">
+        <div id="total"><strong>Итого:  0</strong></div>
+    </div>
+    <div class="products">
+         <div id="p1" class="product">
+             <span class="name">Товар1</span><br>
+             <span class="price">100</span><br>
+             <input type="number" class="col" value="1"><br>
+             <button class="buy">В корзину</button>
+         </div>
+        <div id="p2" class="product">
+            <span class="name">Товар2</span><br>
+            <span class="price">30</span><br>
+            <input type="number" class="col" value="1"><br>
+            <button class="buy">В корзину</button>
+        </div>
+        <div id="p3" class="product">
+            <span class="name">Товар3</span><br>
+            <span class="price">55</span><br>
+            <input type="number" class="col" value="1"><br>
+            <button class="buy">В корзину</button>
+        </div>
+        <div id="p4" class="product">
+            <span class="name">Товар4</span><br>
+            <span class="price">77</span><br>
+            <input type="number" class="col" value="1"><br>
+            <button class="buy">В корзину</button>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function(){
+            $(".buy").click(function() {
+                addBasket($(this).parent().attr('id'));
+            });
+        });
+        function addBasket(id) {
+            item = $("#"+id);
+            var name = item.children(".name").html();
+            var price = +item.children(".price").html();
+            var col = item.children(".col");
+            var zz = +(col[0].value);
+            totalPrice+=zz*price;
+            $("#basket").append(`<div class="tb">Товар ${name} в количестве <span class="tk">${zz}</span> c ценой <span class="tp">${price}</span> за единицу</div>`);
+
+            $("#total").html(`<div id="total"><strong>Итого:  ${totalPrice}</strong></div>`);
+
+        }
+    </script>
+
+</body>
+</html>
